@@ -710,7 +710,7 @@
     </nav>
     
     <div class="header-actions">
-      <a href="#pricing" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">Erstes Tool testen</a>
+      <a href="https://demoversion01.netlify.app/" target="_blank" class="btn-primary" style="padding: 10px 20px; font-size: 14px;">Erstes Tool testen</a>
     </div>
   </header>
 
@@ -907,7 +907,7 @@
           <div class="timeline-content">
             <h3 style="color: var(--accent); margin-bottom: 8px;">Q1 2026 - EventMatch Pro</h3>
             <p style="color: var(--muted-2);">Unser erstes Tool ist live! Event-Matching für Veranstaltungen aller Art.</p>
-            <a href="#tools" style="color: var(--accent); font-size: 0.9rem; text-decoration: none; font-weight: 500;">Jetzt testen →</a>
+            <a href="https://demoversion01.netlify.app/" target="_blank" style="color: var(--accent); font-size: 0.9rem; text-decoration: none; font-weight: 500;">Jetzt testen →</a>
           </div>
         </div>
         
@@ -966,9 +966,9 @@
           </div>
           
           <div style="margin-top: auto; padding-top: 20px;">
-            <button class="btn-secondary" style="width: 100%; padding: 12px; font-size: 14px;">
+            <a href="https://demoversion01.netlify.app/" target="_blank" class="btn-secondary" style="width: 100%; padding: 12px; font-size: 14px; text-decoration: none; display: inline-block; text-align: center;">
               Starter planen
-            </button>
+            </a>
           </div>
         </article>
         
@@ -1017,9 +1017,9 @@
           </div>
           
           <div style="margin-top: auto; padding-top: 20px;">
-            <button class="btn-secondary" style="width: 100%; padding: 12px; font-size: 14px;">
+            <a href="https://demoversion01.netlify.app/" target="_blank" class="btn-secondary" style="width: 100%; padding: 12px; font-size: 14px; text-decoration: none; display: inline-block; text-align: center;">
               Kontakt aufnehmen
-            </button>
+            </a>
           </div>
         </article>
       </div>
@@ -1046,7 +1046,7 @@
       <div>
         <h3>Verfügbare Tools</h3>
         <ul class="footer-links">
-          <li><a href="#tools">EventMatch Pro</a></li>
+          <li><a href="https://demoversion01.netlify.app/" target="_blank">EventMatch Pro</a></li>
           <li><a href="#roadmap">InvoiceFlow (Coming Soon)</a></li>
           <li><a href="#roadmap">MailDirector (Coming Soon)</a></li>
           <li><a href="#roadmap">ContractGuard (Coming Soon)</a></li>
@@ -1082,80 +1082,86 @@
 </div>
 
 <script>
-  // ============================
-  // FIX FÜR NAVIGATION - GARANTIERT FUNKTIONIEREND
-  // ============================
-  
+  // EINFACHER FIX FÜR ALLE BUTTONS
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('Navigation wird initialisiert...');
+    console.log('Alle Buttons werden aktiviert...');
     
-    // 1. SIMPLE SCROLL-TO-FUNCTION
-    function scrollToElement(elementId) {
-      const element = document.getElementById(elementId);
-      if (!element) {
-        console.error('Element nicht gefunden:', elementId);
-        return;
-      }
-      
-      // Header Höhe berechnen
-      const header = document.querySelector('header.site-header');
-      const headerHeight = header ? header.offsetHeight : 0;
-      
-      // Position berechnen mit Offset
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
-      
-      console.log('Scrolling zu:', elementId, 'Position:', offsetPosition);
-      
-      // Smooth scrolling
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      
-      // URL ohne Reload updaten
-      history.pushState(null, null, '#' + elementId);
-    }
-    
-    // 2. NAVIGATION CLICK HANDLER
+    // 1. Navigation funktioniert mit einfachem Scrollen
     const navLinks = document.querySelectorAll('.nav-link');
-    console.log('Nav Links gefunden:', navLinks.length);
-    
     navLinks.forEach(link => {
       link.addEventListener('click', function(e) {
-        e.preventDefault(); // WICHTIG: Verhindert Standardverhalten
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
         
-        const href = this.getAttribute('href');
-        console.log('Nav Link geklickt:', href);
-        
-        if (href.startsWith('#')) {
-          const targetId = href.substring(1); // "#tools" -> "tools"
-          scrollToElement(targetId);
-          
-          // Aktiven Link markieren
-          navLinks.forEach(l => {
-            l.classList.remove('active');
-            l.removeAttribute('aria-current');
+        if (targetElement) {
+          // Einfaches Scrollen ohne komplizierte Berechnungen
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
           });
-          this.classList.add('active');
-          this.setAttribute('aria-current', 'page');
         }
       });
     });
     
-    // 3. FÜR DEBUGGING: Prüfe ob alle Elemente existieren
-    console.log('Prüfe existierende Elemente:');
-    ['tools', 'roadmap', 'pricing', 'contact'].forEach(id => {
-      const el = document.getElementById(id);
-      console.log(`- #${id}:`, el ? '✓ gefunden' : '✗ NICHT GEFUNDEN');
+    // 2. Alle anderen internen Links
+    const internalLinks = document.querySelectorAll('a[href^="#"]:not(.nav-link)');
+    internalLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href !== '#') {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
     });
     
-    // 4. TEST: Füge eine Nachricht hinzu, wenn auf einen Link geklickt wird
+    // 3. Alle Demo-Buttons prüfen
+    const demoButtons = document.querySelectorAll('a[href*="demoversion01"]');
+    console.log('Demo Buttons gefunden:', demoButtons.length);
+    
+    // 4. ALLE BUTTONS TESTEN
+    const allButtons = document.querySelectorAll('a, button');
+    console.log('Alle interaktiven Elemente:', allButtons.length);
+    
+    // 5. Einfache Lösung für Navigation Active State
+    window.addEventListener('scroll', function() {
+      const scrollPos = window.scrollY;
+      
+      navLinks.forEach(link => {
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const targetTop = targetElement.offsetTop;
+          const targetBottom = targetTop + targetElement.offsetHeight;
+          
+          if (scrollPos >= targetTop - 150 && scrollPos < targetBottom - 150) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        }
+      });
+    });
+    
+    // 6. Debugging: Bei Klick auf irgendeinen Link
     document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('nav-link')) {
-        console.log('Navigation Link geklickt:', e.target.getAttribute('href'));
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+        console.log('Klick auf:', e.target.tagName, 
+                   'Href:', e.target.getAttribute('href'),
+                   'Text:', e.target.textContent.trim());
       }
     });
+    
+    console.log('Alle Buttons sind jetzt aktiv!');
   });
 </script>
 </body>
