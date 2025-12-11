@@ -575,6 +575,70 @@
       white-space: nowrap;
     }
     
+    /* FAQ Section Styles */
+    .faq-section {
+      max-width: 800px;
+      margin: 60px auto;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding: 40px;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+    }
+    
+    .faq-section h2 {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      color: var(--text);
+      margin-bottom: 40px;
+      font-weight: 800;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+      padding: 24px 0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    
+    .faq-question:hover {
+      color: var(--accent);
+    }
+    
+    .faq-toggle {
+      font-size: 1.5rem;
+      color: var(--accent);
+      transition: transform 0.3s;
+      margin-left: 20px;
+      flex-shrink: 0;
+    }
+    
+    .faq-answer {
+      color: var(--muted-2);
+      line-height: 1.6;
+      margin-top: 16px;
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+    
     /* Footer */
     footer {
       margin-top: 100px;
@@ -685,6 +749,11 @@
         width: 100%;
         min-width: unset;
       }
+      
+      .faq-section {
+        padding: 20px;
+        margin: 40px auto;
+      }
     }
   </style>
 </head>
@@ -706,6 +775,7 @@
       <a href="#tools" class="nav-link active" aria-current="page">Tools</a>
       <a href="#roadmap" class="nav-link">Roadmap</a>
       <a href="#pricing" class="nav-link">Preise</a>
+      <a href="#faq" class="nav-link">FAQ</a>
       <a href="#contact" class="nav-link">Kontakt</a>
     </nav>
     
@@ -1024,6 +1094,93 @@
         </article>
       </div>
     </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+      <div class="faq-section">
+        <h2>Häufige Fragen</h2>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Wie funktioniert das KI-Matching bei EventMatch Pro?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Unsere KI analysiert Teilnehmerprofile auf Basis von Interessen, Berufserfahrung und Zielen. Sie erkennt Muster und Gemeinsamkeiten, die für erfolgreiches Networking sorgen – schneller und präziser als manuelles Matching.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Kann ich meine Excel/CSV-Dateien importieren?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Ja, einfach Ihre Datei hochladen. Unser System erkennt automatisch Spalten und Kategorien. Sie können die Zuordnung manuell anpassen oder von der KI vorschlagen lassen.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Was passiert nach den 14 kostenlosen Tagen?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Nach 14 Tagen endet der Test automatisch. Sie erhalten eine Erinnerungs-Email und können dann zwischen unseren Tarifen wählen. Keine automatische Verlängerung – Sie entscheiden.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Gibt es eine Mindestvertragslaufzeit?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Nein. Alle Pläne sind monatlich kündbar. Sie zahlen nur für die Monate, in denen Sie Events planen. Perfekt für saisonale Veranstalter.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Kann ich das Tool für einmalige Events nutzen?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Absolut. Viele Nutzer buchen nur für ein bestimmtes Event. Sie können den Monat nutzen, alle Teilnehmer matchen und dann kündigen.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Wie viele Teilnehmer kann ich mit EventMatch Pro verwalten?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Starter: bis zu 50 Teilnehmer, Professional: bis zu 200, Enterprise: unbegrenzt. Bei größeren Events kontaktieren Sie uns für individuelle Lösungen.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Sind meine Daten sicher?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Ja. Daten werden verschlüsselt übertragen und gespeichert. Sie können nach dem Matching alle Daten lokal löschen. Wir halten uns an DSGVO.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Brauche ich technisches Wissen?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Nein. Die Oberfläche ist intuitiv gestaltet. Falls Fragen auftauchen, bieten wir Video-Tutorials und Email-Support (Priority Support im Professional-Plan).
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -1058,6 +1215,7 @@
         <ul class="footer-links">
           <li><a href="#roadmap">Roadmap</a></li>
           <li><a href="#pricing">Preise</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="mailto:info@suiteflow.de">Kontakt</a></li>
           <li><a href="#pricing">Für Unternehmen</a></li>
         </ul>
@@ -1128,11 +1286,28 @@
     const demoButtons = document.querySelectorAll('a[href*="demoversion01"]');
     console.log('Demo Buttons gefunden:', demoButtons.length);
     
-    // 4. ALLE BUTTONS TESTEN
+    // 4. FAQ Toggle Funktionalität
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        faqItem.classList.toggle('active');
+        
+        // Toggle-Symbol aktualisieren
+        const toggle = question.querySelector('.faq-toggle');
+        if (faqItem.classList.contains('active')) {
+          toggle.textContent = '−';
+        } else {
+          toggle.textContent = '+';
+        }
+      });
+    });
+    
+    // 5. ALLE BUTTONS TESTEN
     const allButtons = document.querySelectorAll('a, button');
     console.log('Alle interaktiven Elemente:', allButtons.length);
     
-    // 5. Einfache Lösung für Navigation Active State
+    // 6. Einfache Lösung für Navigation Active State
     window.addEventListener('scroll', function() {
       const scrollPos = window.scrollY;
       
@@ -1152,7 +1327,7 @@
       });
     });
     
-    // 6. Debugging: Bei Klick auf irgendeinen Link
+    // 7. Debugging: Bei Klick auf irgendeinen Link
     document.addEventListener('click', function(e) {
       if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
         console.log('Klick auf:', e.target.tagName, 
